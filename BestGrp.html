@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<head>
+    <title>BEST GRP Home</title>
+    <meta charset="utf-8" /> 
+
+<!---
+ 
+stone by mrsthemes@tumblr
+network/members page
+
+basic html knowledge is preferable but 
+i've left some comments on where to put what.
+
+--->
+
+<link rel="shortcut icon" href="{Favicon}">
+<link rel="alternate" type="application/rss+xml" href="{RSS}">
+
+<link href="https://fonts.googleapis.com/css?family=PT+Serif:400,400i,700,700i" rel="stylesheet">
+
+<style type="text/css">
+
+/*---general---*/
+
+body {
+    background-image: url("https://awesomewallpapers.files.wordpress.com/2014/06/vp0ipcy-imgur.jpg");
+    background-size: 120% 120%;
+    background-repeat: no-repeat;
+    color:#7a7a7a;
+    line-height:20px;
+    margin:0px;
+    font:10px 'PT Serif', serif;
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+    animation: fadein 1.5s;
+-moz-animation: fadein 1.5s;
+-webkit-animation: fadein 1.5s;
+-o-animation: fadein 1.5s;
+}
+
+@keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
+@-moz-keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
+@-webkit-keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
+@-ms-keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
+@-o-keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
+
+/*---tooltips---*/
+ 
+#s-m-t-tooltip {
+    max-width:300px;
+    margin:8px;
+    padding:3px;
+    background:transparent;
+    z-index:99999999;
+    text-transform:lowercase;
+    box-shadow:none;
+}
+
+blockquote, blockquote blockquote {
+    padding:0px 0px 0px 15px;
+    border-left:1px solid #eee;
+    margin:5px;
+}
+
+pre {
+word-wrap:break-word;
+white-space:pre-wrap;  
+    white-space:-moz-pre-wrap;
+    white-space:-pre-wrap;    
+    white-space:-o-pre-wrap;  
+}
+
+a {
+    color:#9a9a9a;
+    text-decoration:none;
+-webkit-transition: all 0.4s ease;
+transition: all 0.4s ease;
+}
+ 
+a:hover {
+    text-decoration:none;
+    color:#999966;
+-webkit-transition: all 0.4s ease;
+transition: all 0.4s ease;
+}
+
+.all {
+    position:relative;
+    margin:0px auto 300px auto;
+}
+
+/*---tumblr controls---*/
+ 
+#tumblr_controls, .tmblr-iframe.tmblr-iframe--desktop-logged-in-controls.iframe-controls--desktop {
+    top:5px;
+    right:5px!important;
+    position:fixed !important;
+    -webkit-filter: invert(1);
+    opacity:.4;
+    filter:alpha(opacity=40);
+    -moz-opacity:.4;
+    z-index:999999999!important;
+}
+
+/*---scrollbar---*/
+ 
+::-webkit-scrollbar {
+    width:13px;
+    height:0px;
+}
+::-webkit-scrollbar-thumb {
+    height:5px;
+    border:7px solid rgba(0, 0, 0, 0);
+    background-clip:padding-box;
+    background-color:rgba(204, 204, 204, .7);
+}
+ 
+::-webkit-scrollbar-corner {
+    background-color:transparent;
+}
+
+/*---header---*/
+
+header {
+    position:relative;
+    top:0;
+    left:0;
+    width:100%;
+    margin:0px auto;
+    padding:10px;
+    text-align:center;
+    border-bottom:1px solid #eee;
+    background:#fff;
+}
+
+.title {
+    margin:30px 0 10px auto;
+    font-size:40px;
+    text-transform:uppercase;
+    letter-spacing:0.3em;
+}
+
+.desc {
+    line-height:20px;
+}
+
+.links ul {
+    border-top:1px solid #eee;
+    list-style:none;
+    padding:25px 10px 0px 10px;
+    margin:25px 0;
+    font-size:11px;
+}
+
+.links ul li {
+    display:inline;
+    margin:0 15px 0 0;
+    font-style:italic;
+}
+
+.links ul li:before {
+    content:"›"; 
+    padding-right:8px;
+    color:#9a9a9a; 
+}
+
+/*---box section---*/
+
+.container {
+    margin:10px auto;
+    width:75%;
+    text-align:center;
+}
+
+div.box {
+    background:#ffffff;
+    display:inline-block;
+    margin:30px;
+    width:12%; /* change the width of the box here */
+    padding:5px;
+-webkit-perspective:1000;
+perspective:1000;
+    position:relative;
+    text-align:left;
+-webkit-transition:all 0.3s 0s ease-in;
+transition:all 0.3s 0s ease-in;
+    z-index:1;
+}
+
+div.box img { width:100%; } /* change the width of the box here */
+
+div.box div.box-title {
+    background:#ffffff;
+    padding:30px 30px 20px;
+    /*position:relative;*/
+    z-index:0;
+}
+
+div.box div.box-title a.toggle-info {
+    border-radius:32px;
+    height:30px;
+    padding:0;
+    position:absolute;
+    right:5px;
+    top:8px;
+    width:32px;
+}
+
+div.box div.box-title a.toggle-info span {
+    background:#a8a8a8;
+    display:block;
+    height:1px;
+    position:absolute;
+    top:15px;
+    width:12px;
+-webkit-transition: all 0.15s 0s ease-out;
+transition: all 0.15s 0s ease-out;
+}
+
+div.box div.box-title a.toggle-info span.left {
+    right:14px;
+-webkit-transform:rotate(45deg);
+    transform:rotate(45deg);
+}
+
+div.box div.box-title a.toggle-info span.right {
+    left:14px;
+-webkit-transform:rotate(-45deg);
+    transform:rotate(-45deg);
+}
+
+div.box div.box-title h2 {
+    font-size: 30px;
+    font-weight: 500;
+    letter-spacing: -0.05em;
+    margin: 0;
+    padding: 0;
+}
+
+div.box div.box-title h2 small {
+    display: block;
+    font-size: 15px;
+    font-weight: 300;
+    letter-spacing: -0.025em;
+    margin:5px 0;
+}
+
+div.box div.box-description {
+    padding:20px;
+    position:relative;
+    line-height:18px;
+    font-size:15px;
+    border-top:1px solid #eee;
+}
+
+div.box div.box-flap {
+    background: #fff;
+    position: absolute;
+    width: 100%;
+    right:0px;
+-webkit-transform-origin: top;
+    transform-origin: top;
+-webkit-transform: rotateX(-90deg);
+    transform: rotateX(-90deg);
+}
+
+div.box div.flap1 {
+-webkit-transition: all 0.3s 0.3s ease-out;
+transition: all 0.3s 0.3s ease-out;
+    z-index: -1;
+}
+
+.container.showing div.box {
+    cursor: pointer;
+    opacity: 0.6;
+-webkit-transform: scale(0.80);
+    transform: scale(0.80);
+}
+
+div.box.show {
+    opacity: 1 !important;
+-webkit-transform: scale(1) !important;
+    transform: scale(1) !important;
+}
+
+div.box.show div.box-title a.toggle-info { background:#ffffff!important; }
+div.box.show div.box-title a.toggle-info span { top:15px; }
+div.box.show div.box-title a.toggle-info span.left { right:10px; }
+div.box.show div.box-title a.toggle-info span.right { left: 10px; }
+
+div.box.show div.box-flap {
+    background: #ffffff;
+-webkit-transform: rotateX(0deg);
+    transform: rotateX(0deg);
+}
+
+div.box.show div.flap1 {
+-webkit-transition: all 0.3s 0s ease-out;
+    transition: all 0.3s 0s ease-out;
+}
+
+/*---cred---*/
+
+.credit {
+    font-size:9px;
+    position:fixed;
+    bottom:10px;
+    right:10px;
+    z-index:10;
+    text-align:right;
+}
+ 
+
+</style></head>
+
+<body class="all">
+
+
+<header>
+    <div class="title">BEST GROUP</div> <!--title here-->
+    <div class="desc">Second Row in CMSC 100 EF-4L.<br>
+    We are fab and fierce, also broke and tired</div><!--description here-->
+   <!----
+    <nav class="links">
+        <ul>
+            <li><a href="/">home</a></li>
+            <li><a href="/ask">message</a></li>
+            <li><a href="/">links</a></li>
+            <li><a href="https://www.tumblr.com/dashboard">dashboard</a></li>
+            <!--you can add more links here-->
+        <!--box start- </ul>
+    </nav>-->
+</header>
+
+
+<div class="container">
+
+
+
+<!--box start- kIM-->
+
+ <div class="box">
+    <img src="https://scontent.fmnl10-1.fna.fbcdn.net/v/t1.0-9/16939689_1465826566770612_6037074913240962921_n.jpg?oh=ea21c5944fdbe5baa9d6eadcc1925987&oe=59ED3BFE"> <!--image here-->
+    <div class="box-title">
+      <a href="#" class="toggle-info btn">
+        <span class="left"></span>
+        <span class="right"></span>
+      </a>
+      <h2>
+          Kimberly <!--name here-->
+          <small><a href="/">@url</a></small> <!--blog url here-->
+      </h2>
+    </div>
+    <div class="box-flap flap1">
+      <div class="box-description">
+        SJDC MEM. Fab member #1 <!--description here-->
+      </div>
+    </div>
+  </div>
+  
+<!--end of box-->
+
+<!--box start-DANNAH-->
+
+ <div class="box">
+    <img src="https://scontent.fmnl10-1.fna.fbcdn.net/v/t34.0-12/20916661_1385786368136131_429076095_n.png?oh=9ab72844ee64ec7aee0a174d3d8b01f1&oe=59980D67"> <!--image here-->
+    <div class="box-title">
+      <a href="#" class="toggle-info btn">
+        <span class="left"></span>
+        <span class="right"></span>
+      </a>
+      <h2>
+          Dannah <!--name here-->
+          <small><a href="/">@url</a></small> <!--blog url here-->
+      </h2>
+    </div>
+    <div class="box-flap flap1">
+      <div class="box-description">
+        CINNAMON ROLL. Fab member #2<!--description here-->
+      </div>
+    </div>
+  </div>
+  
+<!--end of box-->
+
+<!--box start Lyka-->
+
+ <div class="box">
+    <img src="https://scontent.fmnl10-1.fna.fbcdn.net/v/t1.0-9/15134644_1297030326985665_8942714859602204356_n.jpg?oh=e25ba3dac65449bd7bcd10780b6f5c60&oe=5A1CFA16"> <!--image here-->
+    <div class="box-title">
+      <a href="#" class="toggle-info btn">
+        <span class="left"></span>
+        <span class="right"></span>
+      </a>
+      <h2>
+          Lyka <!--name here-->
+          <small><a href="/">@url</a></small> <!--blog url here-->
+      </h2>
+    </div>
+    <div class="box-flap flap1">
+      <div class="box-description">
+        AWESOME PRO. Fab member #3<!--description here-->
+      </div>
+    </div>
+  </div>
+  
+<!--end of box-->
+
+<!--box start Andrea-->
+
+ <div class="box">
+    <img src="https://scontent.fmnl10-1.fna.fbcdn.net/v/t1.0-9/20729435_1786201094742338_28963199257652393_n.jpg?oh=5b31b5f93e22beee9eefaeb12660d39d&oe=5A1934B7"> <!--image here-->
+    <div class="box-title">
+      <a href="#" class="toggle-info btn">
+        <span class="left"></span>
+        <span class="right"></span>
+      </a>
+      <h2>
+          Andrea <!--name here-->
+          <small><a href="/">@url</a></small> <!--blog url here-->
+      </h2>
+    </div>
+    <div class="box-flap flap1">
+      <div class="box-description">
+        ALMIGHTY QUEEN. Fab member #4 <!--description here-->
+      </div>
+    </div>
+  </div>
+  
+<!--end of box-->
+
+
+
+<!--box start Jira-->
+
+ <div class="box">
+    <img src="https://scontent.fmnl10-1.fna.fbcdn.net/v/t1.0-9/13528729_1037363689693637_2650548918988991841_n.jpg?oh=4bdfddf020de8c35c239b8c355243321&oe=5A3229E8"> <!--image here-->
+    <div class="box-title">
+      <a href="#" class="toggle-info btn">
+        <span class="left"></span>
+        <span class="right"></span>
+      </a>
+      <h2>
+          Jira <!--name here-->
+          <small><a href="/">@url</a></small> <!--blog url here-->
+      </h2>
+    </div>
+    <div class="box-flap flap1">
+      <div class="box-description">
+        LEGEND... WAIT FOR IT. Fab member #5 <!--description here-->
+      </div>
+    </div>
+  </div>
+  
+<!--end of box-->
+
+
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="http://static.tumblr.com/5omyijl/RZtn2yg9v/jquery.style-my-tooltips.js"></script>
+<script>
+$(document).ready(function() {
+  var zindex = 10;
+  $("div.box").click(function() {
+      
+    var isShowing = false;
+    if ($(this).hasClass("show")) {
+      isShowing = true
+    }
+    if ($(".container").hasClass("showing")) {
+      $("div.box.show")
+        .removeClass("show");
+      if (isShowing) {
+        $(".container")
+          .removeClass("showing");
+          return false;
+      } else {
+        $(this)
+          .css({
+            zIndex: zindex
+          })
+          .addClass("show");
+      }
+      zindex++;
+    } else {
+      $(".container")
+        .addClass("showing");
+      $(this)
+        .css({
+          zIndex: zindex
+        })
+        .addClass("show");
+      zindex++;
+        return false;
+    }
+  });
+});
+(function($){
+    $(document).ready(function(){
+    $("[title]").style_my_tooltips({
+        tip_follows_cursor:true,
+        tip_delay_time:200,
+        tip_fade_speed:500
+      });
+    });
+})(jQuery);
+</script>
+
+<div class="credit">
+    <a title="theme" href="http://mrsthemes.tumblr.com/" target="_blank">m</a>
+</div>
+</body>
+</html>
